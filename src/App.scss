@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  .enter {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin: 25px 0px 0px 0px;
+  }
+}
+
+.app {
+  &-wrapper {
+    padding: 3%;
+    display: flex;
+    h1 {
+      font-size: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &-phonetic {
+    display: flex;
+    align-items: center;
+    margin: 10px 0 20px 0;
+    h3 {
+      font-size: 30px;
+      color: darkblue;
+      margin-right: 25px;
+      min-width: 110px;
+    }
+    p {
+      font-size: 15px;
+    }
+    &__audio {
+      font-size: 18px;
+      margin-left: 10px;
+      padding: 5px;
+    }
+  }
+
+  &-meanings {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-meaning {
+    display: flex;
+
+    h3 {
+      color: darkblue;
+      margin-right: 25px;
+      min-width: 110px;
+    }
+    h4 {
+      margin-bottom: 5px;
+    }
+    p {
+      margin-bottom: 15px;
+    }
+  }
+}
