@@ -1,5 +1,7 @@
 # Dictionare React App
 
-### master - without redux-toolkit and query
+### branches:
 
-### with-redux - with redux-toolkit and query
+#### master --- without redux-toolkit and query
+
+#### with-redux --- with redux-toolkit and query
