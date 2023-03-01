@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { IResponse } from '../types/types';
-import styled from 'styled-components';
 import { Bars } from 'react-loader-spinner';
+import styled from 'styled-components';
+import { IResponse } from '../types/types';
 
 const PWord = styled.p`
   color: red;
