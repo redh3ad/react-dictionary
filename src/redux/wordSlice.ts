@@ -22,16 +22,33 @@ export const fetchWordInfo = createAsyncThunk<
   }
 });
 
+export const fetchRandomWordInfo = createAsyncThunk<string, undefined>(
+  'word/fetchRandomWordInfo',
+  async (_, { dispatch }) => {
+    const { data } = await axios.get<IResponse[]>(
+      `https://random-word-api.herokuapp.com/word`,
+    );
+    if (data) {
+      dispatch(fetchWordInfo(data.join('')));
+      return data.join('');
+    } else {
+      throw new Error('error');
+    }
+  },
+);
+
 interface IWordInfo {
   wordInfo: IResponse[] | null;
   error: string | unknown;
   loading: boolean;
+  wordApi: string;
 }
 
 const initialState: IWordInfo = {
   wordInfo: null,
   error: null,
   loading: false,
+  wordApi: '',
 };
 
 const wordSlice = createSlice({
@@ -58,6 +75,12 @@ const wordSlice = createSlice({
         state.wordInfo = null;
         state.loading = false;
         state.error = action.payload;
+      },
+    );
+    builder.addCase(
+      fetchRandomWordInfo.fulfilled,
+      (state, action: PayloadAction<string>) => {
+        state.wordApi = action.payload;
       },
     );
   },

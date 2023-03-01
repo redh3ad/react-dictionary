@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import randomWords from 'random-words';
 import { RotatingLines } from 'react-loader-spinner';
 
-import { fetchWordInfo } from './redux/wordSlice';
+import { fetchWordInfo, fetchRandomWordInfo } from './redux/wordSlice';
 import { useAppSelector, useAppDispatch } from './redux/hooks';
 
 const Input = styled.input`
@@ -37,7 +37,9 @@ const App: React.FC = () => {
   const [data, setData] = useState<IResponse[] | null>(null);
   const dispatch = useAppDispatch();
 
-  const { wordInfo, error, loading } = useAppSelector((state) => state.word);
+  const { wordInfo, error, loading, wordApi } = useAppSelector(
+    (state) => state.word,
+  );
 
   useEffect(() => {
     if (update) {
@@ -49,21 +51,20 @@ const App: React.FC = () => {
     setData(wordInfo);
   }, [wordInfo]);
 
+  useEffect(() => {
+    setWord(wordApi);
+    setUpdate(wordApi);
+  }, [wordApi]);
+
   const randomWordFromLib = () => {
     const randomWord = randomWords(1).join('');
     setWord(randomWord);
     setUpdate(randomWord);
   };
 
-  // const randomWordFromApi = () => {
-  //   axios
-  //     .get<string[]>(`https://random-word-api.herokuapp.com/word`)
-  //     .then((response) => {
-  //       const randomWord = response.data.join('');
-  //       setWord(randomWord);
-  //     })
-  //     .catch((error) => {});
-  // };
+  const randomWordFromApi = () => {
+    dispatch(fetchRandomWordInfo());
+  };
 
   return (
     <div className='App'>
@@ -82,7 +83,7 @@ const App: React.FC = () => {
           />
           <Button onClick={() => setUpdate(word)}>Search</Button>
           <Button onClick={randomWordFromLib}>Random Word LIB</Button>
-          <Button>Random Word API</Button>
+          <Button onClick={randomWordFromApi}>Random Word API</Button>
         </form>
         {loading && (
           <div className='enter'>
