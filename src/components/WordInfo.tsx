@@ -42,14 +42,12 @@ const WordInfo: React.FC<IWordInfo> = ({ data }) => {
               />
             )}
           </h1>
-
           <div>
             {info.phonetics.map((phonetic, index) => {
               if (phonetic.text && phonetic.audio) {
                 return (
                   <div className='app-phonetic' key={index}>
                     <h3>{phonetic.text}</h3>
-                    <p>{phonetic.audio}</p>
                     <button
                       onClick={() => playWordAudio(phonetic.audio)}
                       className='app-phonetic__audio'>

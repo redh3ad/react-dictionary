@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { IResponse } from './types/types';
 import WordInfo from './components/WordInfo';
 import './App.scss';
@@ -45,7 +44,7 @@ const App: React.FC = () => {
     if (update) {
       dispatch(fetchWordInfo(update));
     }
-  }, [update]);
+  }, [update, dispatch]);
 
   useEffect(() => {
     setData(wordInfo);
