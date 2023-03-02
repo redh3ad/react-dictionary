@@ -2,6 +2,6 @@
 
 ### branches:
 
-#### master --- without redux-toolkit and query
+#### master --- without redux-toolkit
 
-#### with-redux --- with redux-toolkit and query
+#### with-redux --- with redux-toolkit
